@@ -15,9 +15,9 @@ import java.util.List;
 
 public class C02_HandleDropDown {
 
-    WebDriver driver;
+    WebDriver driver;  // bütün methodların içinde kullanmak istediğim için instance olarak burada oluşturdum.
 
-    @BeforeMethod
+    @BeforeMethod    // TestNG de before,after... kalkıyor,beforeclass,aftermethod gibi ikili anotionlar geliyor...
     public void setUp(){
         WebDriverManager.chromedriver().setup();
         driver=new ChromeDriver();
@@ -27,13 +27,17 @@ public class C02_HandleDropDown {
 
     @Test
     public void dropdownTesti() throws InterruptedException {
+              // Dropdown'da var olan seçeneklerden birisini seçmek için: (3 adımda yapabiliriz bunu.. ):
+        // 1-) Önce Dropdown webelementini locate edip bir degişkene atıyoruz.
+        driver.get("https://www.amazon.com");
+        WebElement dropdownElement=driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
+        // Dropdown kutusunu önce locate ettim burada...
 
-        driver.get("https://www.amazon.com");       // dropdownlar genel itibari ile selectle başlar.
-        WebElement dropdownElementi=driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
+        //****** Dropdownlar genel itibari ile selectle başlar. **********
+        //****** Select Selenyumda var olan classlardan birisidir *********
 
-        // select classından bir obje oluşturalım ve parametre olarak locate ettigimiz
-        // WebElementi yazalım
-        Select select = new Select(dropdownElementi);
+        // 2-) Select classından bir obje oluşturalım ve parametre olarak locate ettigimiz WebElementi yazalım.
+        Select select = new Select(dropdownElement);
 
         // select objesini kullanarak select classından var olan 3 seçim methodundan
         // istedigimizi kullanarak dropdown'da var olan optionlardan birisini seçebiliriz.
@@ -42,7 +46,7 @@ public class C02_HandleDropDown {
 
         // Eğer seçtigimiz option degerini yazdırmak istersek farklı bir method kullanmalıyız.
         System.out.println(select.getFirstSelectedOption().getText()); // Books
-
+// getFSelectedOption web element döndürür o yüzden üzerindeki yazıyı almamız lazım..
         // index degil de belirli bir optiona gitmek için, option adını yazarak gideriz.
         Thread.sleep(2000);
         select.selectByVisibleText("Deals");
@@ -53,15 +57,19 @@ public class C02_HandleDropDown {
 
         select.selectByValue("search-alias=arts-crafts-intl-ship");
 
-        List <WebElement> optionList = select.getOptions();
-        for (WebElement each: optionList
+        List <WebElement> optionList = select.getOptions(); // WebElementlerden oluşur direk yazdıramam.
+        for (WebElement each: optionList // Listten webelementleri getir ve bunları getText ile yazdır
         ) {
             System.out.println(each.getText());
         }
 
         // optionList.stream().forEach(t-> System.out.println(t.getText()));
-
     }
+
+ // Dropdown olunca mutlaka select objesi olur.
+    // Biz de select classından select objesinden methodlarla Handle edebiliriz
+
+// Bir dropdownda 3 tane seçim methodumuz var.  Index - Text ve Value degeri
 
 
 
@@ -69,9 +77,6 @@ public class C02_HandleDropDown {
     public void teardown(){
         driver.close();
     }
-
-
-
 
 
 }

@@ -45,14 +45,17 @@ public class C04_Dropdown {
         //    Arama kutusunun yanindaki kategori menusundeki kategori sayisinin 45 oldugunu test edin
 
         driver.get(" https://www.amazon.com/");
-        WebElement dropdownElementi=driver.findElement(By.xpath(""));
-        Select select=new Select(dropdownElementi);
-        List<WebElement>optionListesi=select.getOptions();
+        WebElement dropdownElement=driver.findElement(By.id("searchDropdownBox"));
 
-        int actualOptionCount=optionListesi.size();
-        int expectedOptionCount=45;
+        Select select=new Select(dropdownElement);
 
-        Assert.assertEquals(actualOptionCount,expectedOptionCount);
+        List<WebElement> list=select.getOptions();
+
+        int actualSize=list.size();
+        int expectedSize=45;
+
+        Assert.assertEquals(actualSize, expectedSize, "Kategori sayısı istenilen ile uyuşmamaktadır.");
+
 
     }
 
@@ -62,9 +65,15 @@ public class C04_Dropdown {
     public void amazonTest2() {
         //    -Test- 2
         //    1. Kategori menusunden Books secenegini  secin
+
         //    2. Arama kutusuna Java yazin ve aratin
         //    3. Bulunan sonuc sayisini yazdirin
         //    4. Sonucun Java kelimesini icerdigini test edin
+
+
+
+
+
 
 
 

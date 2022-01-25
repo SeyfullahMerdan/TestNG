@@ -66,22 +66,20 @@ public class C03_Dropdown {
 
         //    4.Tüm dropdown değerleri(value) yazdırın
 
-        List<WebElement>optionList=select.getOptions();
+        List<WebElement>optionList=select.getOptions(); // bütün degerleri getiriyor.
 
         for (WebElement e:optionList) {
             System.out.println(e.getText());
         }
 
 
-
-        //    5. Dropdown’un boyutunu bulun, Dropdown’da 4 öğe varsa konsolda True , degilse False yazdırın.
+        //    5. Dropdown’un boyutunu bulun, Dropdown’da 4 öğe bulundugunu test edin.
 
         int actualSize=optionList.size();
         int expectedSize=4;
 
-        Assert.assertEquals(actualSize,expectedSize, "Actual-Expected Option sayıları uyuşmuyor.");
-
-
+        Assert.assertEquals(actualSize,expectedSize, "Option sayıları beklentiyi karşılamıyor.");
+        // JUnitte expected actual iken, TestNG de önce actual sonra expected deger yazılır.
     }
 
 
