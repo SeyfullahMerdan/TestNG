@@ -68,6 +68,8 @@ public class C01_DependsOnMethods {
 
     }
 
+    // priority ile dependsOn arasındaki fark priority işleme devam edip testi çalıştırırdı.
+
 
 
 }

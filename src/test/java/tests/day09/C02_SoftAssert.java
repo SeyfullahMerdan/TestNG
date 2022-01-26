@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -32,8 +33,17 @@ public class C02_SoftAssert {
     // ,"Mexico (peso)","Norway (krone)","New Zealand (dollar)","Sweden (krona)"
     // ,"Singapore (dollar)","Thailand (baht)"
 
+    //*** Şuana kadar gördüklerimiz HardAssertiondur. SoftAssertionda hatalar en son verilir,kod çalışmaya devam eder
+    //*** HardAssertionda ise ilk hatada durur. SoftAssert(Vericification olarak da bilinir)
+
+
+    // SofAssert classından methodları kullancagız bu yüzden de önce SoftAssert classından bir obje oluşturmamız lazım.
+    // 3 adımda yapılır: obje oluştur-verificationları yap-softAssert.All ile durumu raporla
+    // ***...Mesaj yazmak burda önemlidir, hangi test failed olmuş anlayabilmek için...***
+
     WebDriver driver;
-    @BeforeClass
+
+    @BeforeMethod
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver=new ChromeDriver();
