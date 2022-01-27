@@ -89,22 +89,23 @@ public class C02_SoftAssert {
         driver.findElement(By.xpath("(//li[@class='ui-state-default ui-corner-top'])[2]")).click();
 
         // 8. “Currency” drop down menusunden Eurozone’u secin
-
+// dropdown oldugu için select classına gidecem ve ordan getirecem. 3 işlemde halledecem...
         WebElement dropdown=driver.findElement(By.id("pc_currency"));
         Select currency=new Select(dropdown);
         currency.selectByValue("EUR");
 
         // 9. soft assert kullanarak "Eurozone (Euro)" secildigini test edin
-
+// softassert kullanmak için 3 aşamamız var. SofAssert classından sofasssert adlı bir obje oluşturacagım
         SoftAssert softAssert=new SoftAssert();
         String actualSelect=currency.getFirstSelectedOption().getText();
-        String expectedSelect="Eurozone (Euro)";
+        String expectedSelect="Eurozone (euro)";
 
         softAssert.assertEquals(actualSelect, expectedSelect, "Dropdown doğru seçilemedi");
-
-        // 10. soft assert kullanarak DropDown listesinin su secenekleri oldugunu test edin
+        System.out.println("Hard Assertta bu kod çalışmazdı. SoftAssertta kod assertAlla kadar devam ediyor.");
+        // 10. soft assert kullanarak DropDown listesinin şu seçenekleri oldugunu test edin
 
         List<WebElement> optionList=currency.getOptions();
+// dropdownları list ile alıp expecteddaki forma sokacam Stringe assign edeyecem ve karşılaştıracam.
 
         String actualOptionListString="";
 
@@ -117,24 +118,17 @@ public class C02_SoftAssert {
         String expectedListeStringOlarak="\"Select One\", \"Australia (dollar)\", \"Canada (dollar)\", \"Switzerland (franc)\", \"China (yuan)\", \"Denmark (krone)\", \"Eurozone (euro)\", \"Great Britain (pound)\", \"Hong Kong (dollar)\", \"Japan (yen)\", \"Mexico (peso)\", \"Norway (krone)\", \"New Zealand (dollar)\", \"Sweden (krona)\", \"Singapore (dollar)\", \"Thailand (baht)\"";
         softAssert.assertEquals(actualOptionListString,expectedListeStringOlarak);
 
-        softAssert.assertAll();
+        softAssert.assertAll();  // buraya kadar raporlama yapar, çalışır,eğer failed varsa sonra execution stop olur.
         // buradan sonra kod çalışmayı durdurur. Eğer failed olan kodlar varsa buraya kadar absorbe eder.
-
+// bunu yapmassam test hep pass olur çünkü raporlama yapmaz. Bu yüzden bunu mutlaka koymam lazım.
+        System.out.println("assertAll'dan sonra eğer failed varsa bu satır çalışmaz.");
     }
-
 
 
     @AfterClass
     public void teardown() {
-
         driver.close();
     }
-
-
-
-
-
-
 
 
 }

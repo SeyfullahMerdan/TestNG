@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.time.Duration;
@@ -56,13 +57,28 @@ public class C01_Allerts {
         //      ○ 3. butona tıklayın, uyarıdaki metin kutusuna isminizi yazin,
         driver.findElement(By.xpath("//button[text()='Click for JS Prompt']")).click();
         Thread.sleep(3000);
-        driver.switchTo().alert().sendKeys("Yildiz");
+        driver.switchTo().alert().sendKeys("Ahmet");
         //      OK butonuna     tıklayın ve result mesajında isminizin görüntülendiğini doğrulayın.
         driver.switchTo().alert().accept();
+        // kalıcı bir işlem yok her seferinde alerte geçerek işlem yapmalıyım.
         sonucYazisiElementi=driver.findElement(By.xpath("//p[@id='result']"));
         String actualSonucYazisi= sonucYazisiElementi.getText();
-        String yazdigimizIsim="Yildiz";
+        String yazdigimizIsim="Ahmet";
         Thread.sleep(3000);
         Assert.assertTrue(actualSonucYazisi.contains(yazdigimizIsim));
+
+        // Alertte yapacagım her türlü işlemde alerte geçmem gerek. switch to alert yaparak alerte geçerim ve işlemimi
+    //    yaparım.  click accept dismiss sendText gibi...
+
+
     }
+
+    @AfterClass
+    public void tearDown() {
+
+        driver.close();
+
+    }
+
+
 }

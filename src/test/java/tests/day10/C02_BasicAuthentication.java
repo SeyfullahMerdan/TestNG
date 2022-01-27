@@ -24,6 +24,15 @@ public class C02_BasicAuthentication {
 
     WebDriver driver;
 
+    // Uygulamalar arasındaki haberleşmeler genellikle API ile halledilir.
+    // Sitelerde bazen sitelere ait olmayan sürekli degişen bilgiler bulunabilir, bu tür sayfalar bi yerle analaşarak API
+    // ile bu bilgileri alarak,güncel olarak yaynlarlar. Bu tür hizmet veren firmalar Authentication verirler.
+
+    // Basic Authentication aslında bir HTML komutudur. Girişi çıkışı kontrol altında olan siteler olabilir, sisteme
+    // kimin girip kimin giremeyecegini kontrol eder ve bunlar locate edilemez. Kullanıcı adı ve şifre olmadan girilemez,
+    // biliyorsak eğer locate yaparken yollayarak siteye gideriz ve öyle gideriz.
+      // Html komutu içerisinde gönderiyoruz.
+
     @BeforeClass
     public void setUp() {
         WebDriverManager.chromedriver().setup();
