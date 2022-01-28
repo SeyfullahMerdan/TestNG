@@ -66,7 +66,7 @@ public class Q6 {
         driver.switchTo().window(firstHandleNumber);
         softAssert.assertEquals(driver.getTitle(),"The Internet", "Last Title test FAİLED");
 
-
+        softAssert.assertAll();
     }
 
 }
