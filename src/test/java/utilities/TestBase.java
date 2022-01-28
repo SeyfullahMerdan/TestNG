@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeClass;
 
 import java.time.Duration;
 
-public class TestBase {
+public abstract class TestBase {
 
     protected WebDriver driver;
 
@@ -21,12 +21,10 @@ public class TestBase {
     }
 
     @AfterClass
-    public void tearDown() {
-        driver.close();
+    public void tearDown() throws InterruptedException {
+       // Thread.sleep(6000);
+      //  driver.quit();
     }
-
-
-
 
 
 

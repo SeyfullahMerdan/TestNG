@@ -24,7 +24,6 @@ public class C02_WindowHandle {
     //● Sayfadaki textin “New Window” olduğunu doğrulayın.
     //● Bir önceki pencereye geri döndükten sonra sayfa başlığının “The Internet” olduğunu doğrulayın.
 
-
     WebDriver driver;
     @BeforeClass
     public void setUp() {
@@ -35,10 +34,8 @@ public class C02_WindowHandle {
     }
 
 
-
     @Test
     public void handleWindow() throws InterruptedException {
-
 
         driver.get("https://the-internet.herokuapp.com/windows");
         //● Sayfadaki textin “Opening a new window” olduğunu doğrulayın.
@@ -46,27 +43,22 @@ public class C02_WindowHandle {
         SoftAssert softAssert=new SoftAssert();
         String expectedText="Opening a new window";
         String actualText=text.getText();
-
         softAssert.assertEquals(actualText, expectedText, "Text test is FAİLED");
 
         //● Sayfa başlığının(title) “The Internet” olduğunu doğrulayın.
-
-
         softAssert.assertEquals(driver.getTitle() , "The Internet" , "Title test FAİLED");
 
 
         //● Click Here butonuna basın.
-        // soruda windowhandle degerini bilmedigim bir window açılıyor. O sayfanın window handle degerini bulmak için
+        // soruda windowhandle degerini bilmedigim bir window açılıyor.O sayfanın window handle degerini bulmak için
         // geçtigim sayfalardaki window handle degerlerini kaydetmeliyim.
-
         String windowHandle1=driver.getWindowHandle(); // click yapmadan önce birinci sayfanın degerin kaydetmiş oluyorum
 
         driver.findElement(By.xpath("//a[text()='Click Here']")).click();
-
+  // Önceki sayfanın handle degerini kaydettim sonra click yaparak yeni sayfaya geçtim...
 
         // önce açılan yeni sayfanın handle degerini elde etmeliyim. Bunu set oluşturarak elde edecem.
         // önce tüm handle degerlerini alıp bir sete koyalım.
-
         Set<String> HandleDegerleri=driver.getWindowHandles();
         String windowHandle2="";
 
@@ -75,37 +67,31 @@ public class C02_WindowHandle {
                 windowHandle2=each;
             }
         }
-           // artık yeni sayfaya geçiş yapabilirim
+
+        //  artık açılan yeni sayfaya geçiş yapabilirim. Normalde driverim eski sayfada kaldı,getWindowsHandels
+        //  diyince otomasyon açtıgı sayfaların handle degerlerinin hespini getirir. Getirdigi handle degerlerden
+        //  açmış oldugu sayfanınkini bulup hemde açılan sayfaların
+        //  unique handle degerlerini bildigim için denklem kurarak yeni açılan pencerenin handle degerini elde ederim.
+        //  elde ettigim bu degerle driverimi ve mausumu bu sayfaya geçirebilirim...
 
 
         //● Acilan yeni pencerenin sayfa başlığının (title) “New Window” oldugunu dogrulayin.
-
         driver.switchTo().window(windowHandle2);
-
         softAssert.assertEquals(driver.getTitle(), "New Window", "New Window Title test FAİLED" );
 
 
         //● Sayfadaki textin “New Window” olduğunu doğrulayın.
-
         WebElement secondText=driver.findElement(By.tagName("h3"));
-
         softAssert.assertEquals(secondText.getText(), "New Window" , "Text test New Window is FAİLED");
 
 
 
         //● Bir önceki pencereye geri döndükten sonra sayfa başlığının “The Internet” olduğunu doğrulayın.
-
         driver.switchTo().window(windowHandle1);
-
         softAssert.assertEquals(driver.getTitle(), "The Internet" , "Second Title test is FAİLED");
 
-
          softAssert.assertAll();
-
     }
-
-
-
 
 
 
@@ -113,6 +99,11 @@ public class C02_WindowHandle {
     public void tearDown() {
        driver.quit();
     }
+
+    // Eğer biz newWindow yaparak geçiyorsak driverimiz o sayfaya gider ve handle degerini de elde edebilriz.
+    // Eğer bir yere click yaparak gidiyorsak o zaman;
+    //             farklı bir yöntemle o sayfanın handle numarasını elde etmiş oluyorum.
+
 
 
 }

@@ -12,7 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
-public class Allert {
+public class AllertQ {
 
     WebDriver driver;
     SoftAssert softAssert;
