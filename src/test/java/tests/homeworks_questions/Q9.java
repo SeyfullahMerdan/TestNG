@@ -1,31 +1,48 @@
-package tests.day12;
+package tests.homeworks_questions;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import utilities.TestBase;
 
-public class C06_FacebookKayit extends TestBase {
+import java.time.Duration;
 
-    // Yeni bir class olusturalim: D15_MouseActions4
-    //1- https://www.facebook.com adresine gidelim
-    //2- Yeni hesap olustur butonuna basalim
-    //3- Ad, soyad, mail ve sifre kutularina deger yazalim ve kaydol tusuna basalim
-    //4- Kaydol tusuna basalim
+public class Q9 {
+    //   1- https://www.facebook.com adresine gidelim
+    //   2- Yeni hesap olustur butonuna basalim
+    //   3- Ad, soyad, mail ve sifre kutularina deger yazalim ve kaydol tusuna basalim
 
+
+    WebDriver driver;
+
+    @BeforeMethod
+    public void setUp() {
+        WebDriverManager.chromedriver().setup();
+        driver=new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        // driver.quiz();
+    }
 
     @Test
-    public void test01() throws InterruptedException {
+    public void facebookHesapTest() throws InterruptedException {
 
-        driver.get("https://www.facebook.com");
+        driver.get("https://www.facebook.com/");
 
         driver.findElement(By.xpath("//button[@title='Tüm Çerezlere İzin Ver']")).click();
 
-        Thread.sleep(3000);
-
         driver.findElement(By.xpath("(//a[@role='button'])[2]")).click();
+
 
         Actions action=new Actions(driver);
 
@@ -34,7 +51,7 @@ public class C06_FacebookKayit extends TestBase {
         action.click(user).
                 keyDown(Keys.SHIFT).
                 sendKeys("s").
-                keyUp(Keys.SHIFT).sendKeys("eyfu").
+                keyUp(Keys.SHIFT).sendKeys("eyfullah").
                 sendKeys(Keys.TAB).keyDown(Keys.SHIFT).sendKeys("m").keyUp(Keys.SHIFT).sendKeys("erdanli").
                 sendKeys(Keys.TAB).sendKeys("merdanseyfullah3@gmail.com").
                 sendKeys(Keys.TAB).sendKeys("merdanseyfullah3@gmail.com").
@@ -46,18 +63,6 @@ public class C06_FacebookKayit extends TestBase {
                 sendKeys(Keys.TAB).sendKeys(Keys.ARROW_RIGHT).
                 sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).
                 sendKeys(Keys.ENTER).perform();
-
-     /*  Araya Thread.Sleep ve benczeri kodları koymak istersek perform() yaptıktan sonra yazmak istedigimiz kodu
-       koyar. Ardından işleme  ----  action.sendKeys(Keys.ENTER) veya sendKeys("....") vb...  ------
-            şeklinde kaldıgımız yerden devam ederiz.
-
-
-     // bunu oluşturmadan da   WebElement submitButton=driver.findElement(By.xpath("(//button[@type='submit'])[2]"));
-        action.click(submitButton).   Keys.TAB ile bir sonraki tuşa geçebiliriz.
-                sendKeys(Keys.ENTER).perform();
-*/
-
-
 
     }
 

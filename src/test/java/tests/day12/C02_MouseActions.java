@@ -42,9 +42,10 @@ public class C02_MouseActions extends TestBase {
 
         Assert.assertTrue(actualTitle.contains(expectedText), "Did not PASS,FAİLED");
 
-        // HardAssert ile SoftAssert arasındaki fark HardAsserttaki kullandıgımız True,False,Equals methodlarının
-        // **static** olması ile ilgilidir.
-
+        //        **************************************************************************************************
+        // HardAssert ile SoftAssert arasındaki fark:: HardAsserttaki kullandıgımız True,False,Equals methodlarının
+        // **static** olması ile ilgilidir. İkisinin de classları farklıdır. TestNG deki Assert methodlar statictir.
+        //        **************************************************************************************************
 
 
     }
