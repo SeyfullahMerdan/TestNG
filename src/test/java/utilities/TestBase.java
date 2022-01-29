@@ -17,13 +17,13 @@ public abstract class TestBase {
         WebDriverManager.chromedriver().setup();
         driver=new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+      //  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
     @AfterClass
     public void tearDown() throws InterruptedException {
-       // Thread.sleep(6000);
-      //  driver.quit();
+        Thread.sleep(10000);
+       // driver.quit();
     }
 
 
