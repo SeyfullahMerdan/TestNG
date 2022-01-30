@@ -49,7 +49,6 @@ public class HomePage01 {
         //4) Now click on Home menu button
         driver.findElement(By.id("//a[text()='Home']")).click();
         //5) Test whether the Home page has Three Arrivals only
-
         //6) The Home page must contains only three Arrivals
         //7) Now click the image in the Arrivals
         //8) Test whether it is navigating to next page where the user can add that book into his basket.
