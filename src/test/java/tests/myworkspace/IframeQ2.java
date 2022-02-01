@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.TestBase;
 
-public class İframeQ2 extends TestBase {
+public class IframeQ2 extends TestBase {
     // 1. “http://webdriveruniversity.com/IFrame/index.html” sayfasina gidin
     //2. “Our Products” butonuna basin
     //3. “Cameras product”i tiklayin
@@ -18,40 +18,27 @@ public class İframeQ2 extends TestBase {
 
     @Test
     public void iframe() throws InterruptedException {
-
         driver.get("http://webdriveruniversity.com/IFrame/index.html");
 
         WebElement frame=driver.findElement(By.xpath("//iframe[@id='frame']"));
 
         driver.switchTo().frame(frame);  // içerideyiz.
-
         driver.findElement(By.xpath("//a[text()='Our Products']")).click();
-
         driver.findElement(By.xpath("//img[@id='camera-img']")).click();
-
         Thread.sleep(3000);
-
         String text=driver.findElement(By.xpath("//div[@class='modal-body']")).getText();
         System.out.println(text);
-
         Thread.sleep(3000);
-
         driver.findElement(By.xpath("//button[text()='Close']")).click();
-
         driver.switchTo().defaultContent();
-      //  driver.switchTo().parentFrame();
+      // driver.switchTo().parentFrame();
 
         driver.findElement(By.id("nav-title")).click();
-
 
         String expectedUrl="http://webdriveruniversity.com/index.html";
         String actualUrl=driver.getCurrentUrl();
 
         Assert.assertEquals(actualUrl,expectedUrl, "URL test FAİLED,It doesnt match");
 
-
     }
-
-
-
 }

@@ -34,16 +34,12 @@ public class ExplicitlyWait {
 
     @AfterClass
     public void tearDown(){
-        // driver.quit();
-
+        driver.quit();
     }
-
 
     @Test
     public void isEnabled() {
-
         SoftAssert softAssert=new SoftAssert();
-
         driver.get("https://the-internet.herokuapp.com/dynamic_controls");
 
         //4. Textbox’in etkin olmadigini(enabled) dogrulayın
@@ -56,18 +52,12 @@ public class ExplicitlyWait {
         wait.until(ExpectedConditions.visibilityOf(textBox));
 
         //6. “It’s enabled!” mesajinin goruntulendigini dogrulayın.
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@id='message']")));
         WebElement isDisplay=driver.findElement(By.xpath("//p[text()=\"It's enabled!\"]"));
         softAssert.assertTrue(isDisplay.isDisplayed());
 
         //7. Textbox’in etkin oldugunu(enabled) dogrulayın
-
         softAssert.assertTrue(textBox.isEnabled());
-
-
         softAssert.assertAll();
-
     }
-
 }

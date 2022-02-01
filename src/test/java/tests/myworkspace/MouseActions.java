@@ -64,10 +64,7 @@ public class MouseActions {
         WebElement textBox=driver.findElement(By.xpath("//div[@id='click-box']"));
         System.out.println(textBox.getText());
 
-        actions.doubleClick(driver.findElement(By.xpath("//div[@class='div-double-click double']"))).perform();
-
-
+        actions.doubleClick(driver.findElement(By.xpath("//div[@class='div-double-click']"))).perform();
 
     }
-
 }
