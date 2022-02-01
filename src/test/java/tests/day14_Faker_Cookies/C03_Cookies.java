@@ -1,4 +1,4 @@
-package tests.day14;
+package tests.day14_Faker_Cookies;
 
 import org.openqa.selenium.Cookie;
 import org.testng.Assert;

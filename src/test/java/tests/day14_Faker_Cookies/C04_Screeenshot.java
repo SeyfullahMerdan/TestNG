@@ -1,4 +1,4 @@
-package tests.day14;
+package tests.day14_Faker_Cookies;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -40,16 +40,6 @@ public class C04_Screeenshot extends TestBase {
         logoResmi=logoElementi.getScreenshotAs(OutputType.FILE);
 
 
-
-
-
     }
-
-
-
-
-
-
-
 
 }

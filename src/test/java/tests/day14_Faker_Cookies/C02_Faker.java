@@ -1,4 +1,4 @@
-package tests.day14;
+package tests.day14_Faker_Cookies;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
