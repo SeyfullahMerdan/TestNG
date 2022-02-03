@@ -5,6 +5,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -35,7 +36,6 @@ public abstract class TestBase {
 
 
     public void tumSayfaScreenshot() throws IOException {
-
         TakesScreenshot tss= (TakesScreenshot) driver;
         String tarih=new SimpleDateFormat("yyMMddhhmmss").format(new Date());
         File tumSayfa=new File("target/screenshot/tumSayfa"+tarih+".jpg");
@@ -45,11 +45,12 @@ public abstract class TestBase {
     }
 
 
-    public void webElementScreenshot() {
-
-
+    public void webElementScreenshot(WebElement webElement) throws IOException {
+        String tarih=new SimpleDateFormat("yyMMddhhmmss").format(new Date());
+        File webElementSS=new File("target/screenshot/webelement"+tarih+".jpg");
+        File geciciResim=webElement.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(geciciResim,webElementSS);
     }
-
 
 
 

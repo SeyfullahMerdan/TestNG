@@ -41,7 +41,6 @@ public class C02_ScreenShotWebElement extends TestBase {
         FileUtils.copyFile(geciciResim,webElementSS);
 
 
-
     }
 
 }

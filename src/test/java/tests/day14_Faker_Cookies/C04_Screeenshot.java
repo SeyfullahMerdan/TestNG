@@ -1,22 +1,23 @@
 package tests.day14_Faker_Cookies;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.testng.annotations.Test;
 import utilities.TestBase;
 
 import java.io.File;
+import java.io.IOException;
 
 public class C04_Screeenshot extends TestBase {
 
 
     @Test
-    public void screenTest(){
+    public void screenTest() throws IOException {
 
         driver.get("https://www.google.com");
         driver.findElement(By.xpath("//div[text()='Kabul ediyorum']")).click();
+
+        driver.findElement(By.xpath("//input[@class='gLFyf gsfi']")).sendKeys("Elektrikli Araç" + Keys.ENTER);
 
         // 1. adim: screenshot almak için obje oluşturalım ve deger olarak driver'imizi atayalım
         //     deger olarak driver'i kabul etmesi için casting yapmamız gerekir.
@@ -26,18 +27,26 @@ public class C04_Screeenshot extends TestBase {
         // 2.adim: tüm sayfanın screenshotunu almak için bir file oluşturalım ve
         // dosya yolunu belirtelim.
 
-        File tumSayfaSS=new File("src//tumSayfa.png");
+        File tumSayfaSS=new File("target/screenshot/tumSayfa.png");
 
-        // 3. adim: oluşturdugumuz file ile takescreenshot objesini ilişkilendirelim
+        //3. Adım: Bir dosya daha oluşturup screenshot objesi ile screenshotı alalım.
 
-        tumSayfaSS=tss.getScreenshotAs(OutputType.FILE);
+        File geciciResim=tss.getScreenshotAs(OutputType.FILE);
 
 
-        // eğer spesifik bir webelementin ss'ini almak istiyorsanız
+        // 4. adim: gecici resmi kaydetmek isedigimiz asıl doyaya copy edelim.
 
-        WebElement logoElementi=driver.findElement(By.xpath(""));
-        File logoResmi=new File("src/logo.png");
-        logoResmi=logoElementi.getScreenshotAs(OutputType.FILE);
+       FileUtils.copyFile(geciciResim,tumSayfaSS);
+
+
+ /*     Eğer spesifik bir webelementin ss'ini almak istiyorsanız
+
+        WebElement logoElementi=driver.findElement(By.xpath("")); -- önce elementi locate ettim
+        File logoResmi=new File("target/screenshot/logo.png");    -- File classı ile koyacagım klasörü oluştrudm
+        File geciciResim=logoElementi.getScreenshotAs(OutputType.FILE); -- Elementin SSini aldım,File dosyasına assign ettim.
+        FileUtils.copyFile(geciciResim,logoResmi);  --SSi belirledigim yola copy paste yapıyorum.
+
+*/
 
 
     }

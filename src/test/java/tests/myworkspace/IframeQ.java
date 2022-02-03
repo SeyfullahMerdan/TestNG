@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -35,6 +37,15 @@ public class IframeQ {
 
         // 1) http://demo.guru99.com/test/guru99home/ sitesine gidiniz
         driver.get("http://demo.guru99.com/test/guru99home/");
+
+
+       WebElement securty=driver.findElement(By.className("faktor-iframe-wrapper"));
+       driver.switchTo().frame(securty);
+
+       driver.findElement(By.xpath("(//span[text()='Tümünü Kabul Et'])[1]")).click();
+
+       driver.switchTo().defaultContent();
+
 
         //2) sayfadaki iframe sayısını bulunuz.
 
@@ -68,7 +79,7 @@ public class IframeQ {
 
     @AfterClass
     public void tearDown() {
-        driver.quit();
+        //driver.quit();
     }
 
 

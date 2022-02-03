@@ -19,13 +19,13 @@ public class C04_JsExecuterClick extends TestBase {
 
         // 1.Adım JSExecuter objesi oluşturulaım ve driveri cast edelim
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver; // driverimizi javascript data türüne cast yaptık.
 
         // 2.Adım ilgili web elementi locate edelim
         WebElement sellElement = driver.findElement(By.xpath("//a[normalize-space()='Sell']"));
 
         // 3. Adım ilgili script ve argument ile objemiz üserinden executeScript methodunu çalıştıralım
-        js.executeScript("arguments[0].click();", sellElement);
+        js.executeScript("arguments[0].click();", sellElement); // java script ile click yaptık.
 
         Thread.sleep(3000);
 
