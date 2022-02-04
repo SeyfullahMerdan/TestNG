@@ -1,4 +1,4 @@
-package tests.day11_WindowHandle.homeworks_questions;
+package tests.homeworks_questions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;

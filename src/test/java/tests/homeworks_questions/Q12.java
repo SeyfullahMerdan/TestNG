@@ -1,4 +1,4 @@
-package tests.day11_WindowHandle.homeworks_questions;
+package tests.homeworks_questions;
 
 public class Q12 {
 
